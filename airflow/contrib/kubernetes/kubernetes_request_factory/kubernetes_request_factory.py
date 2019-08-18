@@ -257,3 +257,13 @@ class KubernetesRequestFactory:
                     }
                 }
             )
+
+    @staticmethod
+    def extract_host_aliases(pod, req):
+        if pod.host_aliases:
+            req['spec']['hostAliases'] = []
+            for host_alias in pod.host_aliases:
+                req['spec']['hostAliases'].append({
+                    'ip': host_alias.ip,
+                    'hostnames': host_alias.hostnames
+                })
