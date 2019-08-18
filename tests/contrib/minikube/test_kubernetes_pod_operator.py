@@ -19,7 +19,6 @@ import unittest
 import os
 import shutil
 
-from airflow.contrib.kubernetes.host_alias import HostAlias
 from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
 from airflow.contrib.kubernetes.secret import Secret
 from airflow import AirflowException
@@ -318,8 +317,8 @@ class KubernetesPodOperatorTest(unittest.TestCase):
     @staticmethod
     def test_host_aliases():
         with mock.patch.object(PodLauncher, 'log') as mock_logger:
-            host_alias = HostAlias(ip='1.2.3.4', hostnames=['test1', 'test2'])
-            host_alias2 = HostAlias(ip='5.6.7.8', hostnames=['test3', 'test4'])
+            host_alias = {'ip': '1.2.3.4', 'hostnames': ['test1', 'test2']}
+            host_alias2 = {'ip': '5.6.7.8', 'hostnames': ['test3', 'test4']}
 
         k = KubernetesPodOperator(
             namespace='default',

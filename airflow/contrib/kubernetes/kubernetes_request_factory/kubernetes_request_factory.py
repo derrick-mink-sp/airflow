@@ -264,6 +264,6 @@ class KubernetesRequestFactory:
             req['spec']['hostAliases'] = []
             for host_alias in pod.host_aliases:
                 req['spec']['hostAliases'].append({
-                    'ip': host_alias.ip,
-                    'hostnames': host_alias.hostnames
+                    'ip': host_alias['ip'],
+                    'hostnames': host_alias['hostnames']
                 })

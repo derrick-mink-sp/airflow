@@ -14,7 +14,6 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-from airflow.contrib.kubernetes.host_alias import HostAlias
 from airflow.contrib.kubernetes.pod import Pod, Port
 from airflow.contrib.kubernetes.volume import Volume
 from airflow.contrib.kubernetes.volume_mount import VolumeMount
@@ -102,8 +101,8 @@ class PodGenerator:
 
         self.volumes.append(volume_map)
 
-    def add_host_alias(self, host_alias: HostAlias):
-        self._add_host_alias(ip=host_alias.ip, hostnames=host_alias.hostnames)
+    def add_host_alias(self, host_alias):
+        self._add_host_alias(ip=host_alias['ip'], hostnames=host_alias['hostnames'])
 
     def _add_host_alias(self, ip, hostnames):
         host_map = {'ip': ip, 'hostnames': hostnames}
