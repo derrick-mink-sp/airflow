@@ -58,7 +58,6 @@ class PodLauncher(LoggingMixin):
 
         req = self.kube_req_factory.create(pod)
         self.log.debug('Pod Creation Request: \n%s', json.dumps(req, indent=2))
-        print(json.dumps(req, indent=2))
         try:
             resp = self._client.create_namespaced_pod(body=req, namespace=pod.namespace, **kwargs)
             self.log.debug('Pod Creation Response: %s', resp)
