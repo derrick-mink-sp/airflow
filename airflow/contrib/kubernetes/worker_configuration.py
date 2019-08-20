@@ -360,6 +360,5 @@ class WorkerConfiguration(LoggingMixin):
             affinity=affinity,
             tolerations=tolerations,
             security_context=self._get_security_context(),
-            configmaps=self._get_configmaps(),
-            host_aliases=self._get_host_aliases()
+            configmaps=self._get_configmaps()
         )
